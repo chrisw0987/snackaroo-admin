@@ -3,7 +3,7 @@ import './AddProduct.css';
 import upload_area from '../../assets/upload_area.svg';
 
 const AddProduct = () => {
-
+    const API = import.meta.env.VITE_API_BASE;
     const [image,setImage] = useState(false);
     const [productDetails, setProductDetails] = useState({
         name:"",
@@ -26,7 +26,7 @@ const AddProduct = () => {
         let formData = new FormData();
         formData.append('product', image);
 
-        await fetch('https://snackaroo-backend.onrender.com/upload', {
+        await fetch(`${API}/upload`, {
             method: 'POST',
             headers: {
                 Accept: 'application/json',
@@ -36,7 +36,7 @@ const AddProduct = () => {
         if (responseData.success) {
             product.image = responseData.image_url;
             console.log(product);
-            await fetch('https://snackaroo-backend.onrender.com/addproduct', {
+            await fetch(`${API}/addproduct`, {
                 method: 'POST',
                 headers: {
                     Accept: 'application/json',

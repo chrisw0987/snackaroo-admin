@@ -2,10 +2,10 @@ import React, { useEffect, useState } from 'react';
 import './ListProduct.css';
 import cross_icon from '../../assets/cross_icon.png';
 const ListProduct = () => {
-
+  const API = import.meta.env.VITE_API_BASE;
   const [allproducts, setAllProducts] = useState([]);
   const fetchInfo = async () => {
-    await fetch('https://snackaroo-backend.onrender.com/allproducts')
+    await fetch(`${API}/allproducts`)
     .then((res)=>res.json())
     .then((data)=>{setAllProducts(data)});
   }
@@ -15,7 +15,7 @@ const ListProduct = () => {
   }, []);
 
   const remove_product = async (id)=> {
-    await fetch('https://snackaroo-backend.onrender.com/removeproduct', {
+    await fetch(`${API}/removeproduct`, {
       method: 'POST',
       headers: {
         Accept: 'application/json',
