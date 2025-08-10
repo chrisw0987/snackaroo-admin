@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import './ListProduct.css';
 import cross_icon from '../../assets/cross_icon.png';
+import { API_BASE_URL } from '../../../config';
+
 const ListProduct = () => {
   const API = import.meta.env.VITE_API_BASE;
   const [allproducts, setAllProducts] = useState([]);
