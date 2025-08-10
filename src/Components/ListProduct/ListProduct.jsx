@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import './ListProduct.css';
 import cross_icon from '../../assets/cross_icon.png';
-import { API_BASE_URL } from '../../../config';
 
 const ListProduct = () => {
   const API = import.meta.env.VITE_API_BASE;
   const [allproducts, setAllProducts] = useState([]);
+  const imgSrc = product.image?.startsWith('http') ? product.image : `${API}${product.image}`;
   const fetchInfo = async () => {
     await fetch(`${API}/allproducts`)
     .then((res)=>res.json())
@@ -44,7 +44,7 @@ const ListProduct = () => {
         {allproducts.map((product,index)=>{
           return <>
           <div key={index} className="listproduct-format-main listproduct-format">
-            <img src={product.image} alt="" className="listproduct-product-icon" />
+            <img src={imgSrc} alt="" className="listproduct-product-icon" />
             <p>{product.name}</p>
             <p>${product.old_price}</p>
             <p>${product.new_price}</p>
