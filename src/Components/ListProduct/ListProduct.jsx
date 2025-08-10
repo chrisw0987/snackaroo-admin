@@ -6,6 +6,7 @@ const ListProduct = () => {
   const API = import.meta.env.VITE_API_BASE;
   const [allproducts, setAllProducts] = useState([]);
   const imgSrc = product.image?.startsWith('http') ? product.image : `${API}${product.image}`;
+
   const fetchInfo = async () => {
     await fetch(`${API}/allproducts`)
     .then((res)=>res.json())
